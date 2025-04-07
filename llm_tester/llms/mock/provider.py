@@ -6,10 +6,10 @@ import os
 import re
 from typing import Dict, Any, Tuple, Optional, List, Union
 import time
-import random
 
 from ..base import BaseLLM, ModelConfig
 from ...utils.cost_manager import UsageData
+import secrets
 
 class MockProvider(BaseLLM):
     """Provider implementation for mocked responses"""
@@ -49,7 +49,7 @@ class MockProvider(BaseLLM):
         self.logger.info(f"Mock provider called with model {model_name}")
         
         # Add simulated delay to mimic real API call
-        delay = random.uniform(0.1, 0.5)
+        delay = secrets.SystemRandom().uniform(0.1, 0.5)
         time.sleep(delay)
         
         # Extract source text
